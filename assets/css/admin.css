@@ -1,0 +1,69 @@
+.saito-sl-admin .saito-sl-card {
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	border-radius: 4px;
+	padding: 4px 20px 16px;
+	margin: 16px 0;
+	max-width: 960px;
+}
+
+.saito-sl-admin .saito-sl-summary {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px 24px;
+	margin: 12px 0;
+}
+
+.saito-sl-admin .saito-sl-summary p {
+	margin: 0;
+}
+
+.saito-sl-admin .saito-sl-summary__count {
+	font-size: 15px;
+}
+
+.saito-sl-admin .saito-sl-inline-form {
+	display: inline-block;
+	margin: 0 8px 0 0;
+}
+
+.saito-sl-admin .saito-sl-stats {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	padding: 0;
+	list-style: none;
+}
+
+.saito-sl-admin .saito-sl-stats li {
+	background: #f6f7f7;
+	border-radius: 4px;
+	padding: 8px 12px;
+	margin: 0;
+}
+
+.saito-sl-admin .saito-sl-stats li.is-error,
+.saito-sl-admin .saito-sl-sync-status.is-error {
+	color: #b32d2e;
+}
+
+.saito-sl-admin .saito-sl-sync-status.is-ok {
+	color: #007017;
+}
+
+.saito-sl-admin .saito-sl-issues tr.is-error td:last-child {
+	color: #b32d2e;
+}
+
+.saito-sl-admin .saito-sl-issues tr.is-warning td:last-child {
+	color: #996800;
+}
+
+.saito-sl-admin .saito-sl-actions {
+	margin-top: 20px;
+}
+
+.saito-sl-admin .notice.inline {
+	margin: 12px 0;
+}

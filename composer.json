@@ -1,0 +1,19 @@
+{
+    "name": "lucas-tsl/saito-store-locator",
+    "description": "Carte des points de vente avec recherche par ville, code postal ou position, fiches magasin indexables, import CSV et synchronisation Google Sheets.",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.9",
+        "wp-coding-standards/wpcs": "^3.1",
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "platform": {
+            "php": "7.4"
+        }
+    }
+}

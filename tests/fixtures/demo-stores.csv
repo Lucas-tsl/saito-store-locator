@@ -1,0 +1,45 @@
+id_store,active,name,address1,address2,postcode,city,country,latitude,longitude,phone,website,icone,services,horaires
+1,1,COMPTOIR LUMIÈRE PARIS CENTRE,8 avenue Jean Jaurès,,75001,Paris,France,48.856372,2.326427,01 99 00 01 07,,,Emballage cadeau,Mardi-Samedi 9h30-12h30 14h-19h
+2,1,COMPTOIR LUMIÈRE PARIS GARE,15 place du Marché,,75001,Paris,France,48.864222,2.323918,01 99 00 02 14,,,"Emballage cadeau, Retrait en magasin",Lun au ven 9h-19h | Sam 10h-18h
+3,1,COMPTOIR LUMIÈRE PARIS PORT,22 rue Victor Hugo,,75001,Paris,France,48.861461,2.333302,01 99 00 03 21,https://example.com/magasins/3,,Retrait en magasin,Tous les jours 10h-20h
+4,1,MAISON DUPONT PARIS CENTRE,29 cours de la Liberté,,75004,Paris,France,48.843992,2.357938,01 99 00 04 28,,,"Conseil personnalisé, Emballage cadeau",Lundi 14h-19h ; Mardi-Samedi 10h-19h
+5,1,MAISON DUPONT PARIS GARE,36 rue des Lilas,,75004,Paris,France,48.8435,2.355577,01 99 00 05 35,,signature,,
+6,1,LA BOUTIQUE DE LÉA PARIS CENTRE,43 boulevard Gambetta,,75011,Paris,France,48.848677,2.366903,01 99 00 06 42,https://example.com/magasins/6,,Emballage cadeau,Lundi-Samedi 10h-19h ; Dimanche fermé
+7,1,LA BOUTIQUE DE LÉA PARIS GARE,50 rue du Commerce,,75011,Paris,France,48.857188,2.390459,01 99 00 07 49,,,"Emballage cadeau, Retrait en magasin",Mardi-Samedi 9h30-12h30 14h-19h
+8,1,MAISON DUPONT PARIS CENTRE,57 allée des Tilleuls,,75015,Paris,France,48.833071,2.283844,01 99 00 08 56,,,Retrait en magasin,Lun au ven 9h-19h | Sam 10h-18h
+9,1,MAISON DUPONT PARIS GARE,64 rue Nationale,,75015,Paris,France,48.845158,2.307027,01 99 00 09 63,https://example.com/magasins/9,,"Conseil personnalisé, Emballage cadeau",Tous les jours 10h-20h
+10,1,LA BOUTIQUE DE LÉA PARIS,71 rue de la République,,75017,Paris,France,48.88665,2.311694,01 99 00 10 70,,signature,,Lundi 14h-19h ; Mardi-Samedi 10h-19h
+11,1,ATELIER MARTIN LYON CENTRE,78 avenue Jean Jaurès,,69002,Lyon,France,45.76923,4.817491,01 99 00 11 77,,,Emballage cadeau,
+12,1,ATELIER MARTIN LYON GARE,85 place du Marché,,69002,Lyon,France,45.766403,4.825267,01 99 00 12 84,https://example.com/magasins/12,,"Emballage cadeau, Retrait en magasin",Lundi-Samedi 10h-19h ; Dimanche fermé
+13,1,ATELIER MARTIN LYON PORT,92 rue Victor Hugo,,69002,Lyon,France,45.749262,4.819769,01 99 00 13 91,,,Retrait en magasin,Mardi-Samedi 9h30-12h30 14h-19h
+14,1,LA BOUTIQUE DE LÉA LYON CENTRE,99 cours de la Liberté,,69003,Lyon,France,45.755404,4.861116,01 99 00 14 98,,,"Conseil personnalisé, Emballage cadeau",Lun au ven 9h-19h | Sam 10h-18h
+15,1,LA BOUTIQUE DE LÉA LYON GARE,106 rue des Lilas,,69003,Lyon,France,45.752337,4.853611,01 99 00 15 05,https://example.com/magasins/15,signature,,Tous les jours 10h-20h
+16,1,MAISON DUPONT VILLEURBANNE,113 boulevard Gambetta,,69100,Villeurbanne,France,45.775234,4.886117,01 99 00 16 12,,,Emballage cadeau,Lundi 14h-19h ; Mardi-Samedi 10h-19h
+17,1,COMPTOIR LUMIÈRE BORDEAUX CENTRE,120 rue du Commerce,,33000,Bordeaux,France,44.842346,-0.593991,01 99 00 17 19,,,"Emballage cadeau, Retrait en magasin",
+18,1,COMPTOIR LUMIÈRE BORDEAUX GARE,7 allée des Tilleuls,,33000,Bordeaux,France,44.83063,-0.589409,01 99 00 18 26,https://example.com/magasins/18,,Retrait en magasin,Lundi-Samedi 10h-19h ; Dimanche fermé
+19,1,COMPTOIR LUMIÈRE BORDEAUX PORT,14 rue Nationale,,33000,Bordeaux,France,44.84553,-0.582317,01 99 00 19 33,,,"Conseil personnalisé, Emballage cadeau",Mardi-Samedi 9h30-12h30 14h-19h
+20,1,MAISON DUPONT LE BOUSCAT,21 rue de la République,,33110,Le Bouscat,France,44.86054,-0.596262,01 99 00 20 40,,signature,,Lundi-Samedi 9h30-19h30 ; Dimanche fermé
+21,1,COMPTOIR LUMIÈRE PESSAC,28 avenue Jean Jaurès,,33600,Pessac,France,44.805576,-0.637507,01 99 00 21 47,https://example.com/magasins/21,,Emballage cadeau,Tous les jours 10h-20h
+22,1,MAISON DUPONT NICE,35 place du Marché,,06000,Nice,France,43.707965,7.274668,01 99 00 22 54,,,"Emballage cadeau, Retrait en magasin",Lundi 14h-19h ; Mardi-Samedi 10h-19h
+23,1,LA BOUTIQUE DE LÉA NICE GARE,42 rue Victor Hugo,,06000,Nice,France,43.694758,7.270682,01 99 00 23 61,,,Retrait en magasin,
+24,1,MAISON DUPONT MARSEILLE CENTRE,49 cours de la Liberté,,13001,Marseille,France,43.299405,5.393004,01 99 00 24 68,https://example.com/magasins/24,,"Conseil personnalisé, Emballage cadeau",Lundi-Samedi 10h-19h ; Dimanche fermé
+25,1,MAISON DUPONT MARSEILLE GARE,56 rue des Lilas,,13001,Marseille,France,43.304307,5.374214,01 99 00 25 75,,signature,,Mardi-Samedi 9h30-12h30 14h-19h
+26,1,MAISON DUPONT MARSEILLE PORT,63 boulevard Gambetta,,13001,Marseille,France,43.310324,5.368778,01 99 00 26 82,,,Emballage cadeau,Lun au ven 9h-19h | Sam 10h-18h
+27,1,ATELIER MARTIN LILLE CENTRE,70 rue du Commerce,,59000,Lille,France,50.634535,3.071729,01 99 00 27 89,https://example.com/magasins/27,,"Emballage cadeau, Retrait en magasin",Tous les jours 10h-20h
+28,1,ATELIER MARTIN LILLE GARE,77 allée des Tilleuls,,59000,Lille,France,50.628148,3.063147,01 99 00 28 96,,,Retrait en magasin,Lundi 14h-19h ; Mardi-Samedi 10h-19h
+29,1,ATELIER MARTIN LILLE PORT,84 rue Nationale,,59000,Lille,France,50.625441,3.068883,01 99 00 29 03,,,"Conseil personnalisé, Emballage cadeau",
+30,1,LA BOUTIQUE DE LÉA NANTES CENTRE,91 rue de la République,,44000,Nantes,France,47.22025,-1.554463,01 99 00 30 10,https://example.com/magasins/30,signature,,Lundi-Samedi 10h-19h ; Dimanche fermé
+31,1,LA BOUTIQUE DE LÉA NANTES GARE,98 avenue Jean Jaurès,,44000,Nantes,France,47.222911,-1.56276,01 99 00 31 17,,,Emballage cadeau,Mardi-Samedi 9h30-12h30 14h-19h
+32,1,MAISON DUPONT TOULOUSE CENTRE,105 place du Marché,,31000,Toulouse,France,43.609187,1.44702,01 99 00 32 24,,,"Emballage cadeau, Retrait en magasin",Lun au ven 9h-19h | Sam 10h-18h
+33,1,MAISON DUPONT TOULOUSE GARE,112 rue Victor Hugo,,31000,Toulouse,France,43.606417,1.442599,01 99 00 33 31,https://example.com/magasins/33,,Retrait en magasin,Tous les jours 10h-20h
+34,1,MAISON DUPONT TOULOUSE PORT,119 cours de la Liberté,,31000,Toulouse,France,43.612659,1.45823,01 99 00 34 38,,,"Conseil personnalisé, Emballage cadeau",Lundi 14h-19h ; Mardi-Samedi 10h-19h
+35,1,ATELIER MARTIN STRASBOURG CENTRE,6 rue des Lilas,,67000,Strasbourg,France,48.581178,7.756253,01 99 00 35 45,,signature,,
+36,1,ATELIER MARTIN STRASBOURG GARE,13 boulevard Gambetta,,67000,Strasbourg,France,48.571256,7.757448,01 99 00 36 52,https://example.com/magasins/36,,Emballage cadeau,Lundi-Samedi 10h-19h ; Dimanche fermé
+37,1,COMPTOIR LUMIÈRE RENNES CENTRE,20 rue du Commerce,,35000,Rennes,France,48.114831,-1.664221,01 99 00 37 59,,,"Emballage cadeau, Retrait en magasin",Mardi-Samedi 9h30-12h30 14h-19h
+38,1,COMPTOIR LUMIÈRE RENNES GARE,27 allée des Tilleuls,,35000,Rennes,France,48.119026,-1.686893,01 99 00 38 66,,,Retrait en magasin,Lun au ven 9h-19h | Sam 10h-18h
+39,1,ATELIER MARTIN ANNECY,34 rue Nationale,,74000,Annecy,France,45.896459,6.134797,01 99 00 39 73,https://example.com/magasins/39,,"Conseil personnalisé, Emballage cadeau",Tous les jours 10h-20h
+40,1,MAISON DUPONT MONTPELLIER CENTRE,41 rue de la République,,34000,Montpellier,France,43.599342,3.875474,01 99 00 40 80,,signature,,Lundi 14h-19h ; Mardi-Samedi 10h-19h
+41,1,MAISON DUPONT MONTPELLIER GARE,48 avenue Jean Jaurès,,34000,Montpellier,France,43.602833,3.864447,01 99 00 41 87,,,Emballage cadeau,
+42,1,LA BOUTIQUE DE LÉA LUXEMBOURG,55 place du Marché,,1661,Luxembourg,Luxembourg,49.601015,6.138583,,https://example.com/magasins/42,,"Emballage cadeau, Retrait en magasin",Lundi-Samedi 10h-19h ; Dimanche fermé
+43,1,ATELIER MARTIN BRUXELLES,62 rue Victor Hugo,,1000,Bruxelles,Belgique,50.837804,4.344424,,,,Retrait en magasin,Mardi-Samedi 9h30-12h30 14h-19h
+44,1,MAISON DUPONT GENÈVE,69 cours de la Liberté,,1204,Genève,Suisse,46.199083,6.158786,,,,"Conseil personnalisé, Emballage cadeau",Lun au ven 9h-19h | Sam 10h-18h

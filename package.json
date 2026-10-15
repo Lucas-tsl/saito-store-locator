@@ -1,0 +1,17 @@
+{
+  "name": "saito-store-locator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Carte des points de vente avec recherche par ville, code postal ou position, fiches magasin indexables, import CSV et synchronisation Google Sheets.",
+  "scripts": {
+    "lint:js": "eslint assets/js",
+    "lint:css": "stylelint \"assets/css/**/*.css\"",
+    "lint": "npm run lint:js && npm run lint:css"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.9.0",
+    "eslint": "^9.9.0",
+    "stylelint": "^16.9.0",
+    "stylelint-config-standard": "^36.0.1"
+  }
+}

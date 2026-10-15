@@ -1,0 +1,1249 @@
+/*
+ * Saito Store Locator 1.4.0
+ * Palette strictement noir / blanc / gris. Styles limités au conteneur .saito-sl.
+ */
+
+/* ---------- Thème clair (valeurs par défaut) ---------- */
+
+.saito-sl {
+	--saito-sl-bg: transparent;
+	--saito-sl-sticky-bg: #fff;
+	--saito-sl-text: #000;
+	--saito-sl-muted: #5c5c5c;
+	--saito-sl-surface: #fff;
+	--saito-sl-raised: #f5f5f5;
+	--saito-sl-hover: #efefef;
+	--saito-sl-line: #e4e4e4;
+	--saito-sl-border: #cdcdcd;
+	--saito-sl-accent: #000;
+	--saito-sl-accent-text: #fff;
+	--saito-sl-focus: #000;
+	--saito-sl-panel: rgba(255, 255, 255, 0.94);
+	--saito-sl-panel-solid: #fff;
+	--saito-sl-shadow: 0 12px 32px rgba(0, 0, 0, 0.14);
+	--saito-sl-pin: #000;
+	--saito-sl-pin-stroke: #fff;
+	--saito-sl-cluster-ring: rgba(0, 0, 0, 0.18);
+	--saito-sl-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+	box-sizing: border-box;
+	max-width: 1200px;
+	margin: 0 auto 80px;
+	color: var(--saito-sl-text);
+	background: var(--saito-sl-bg);
+	font-family: inherit; /* Police du site : le store locator se fond dans la page. */
+	-webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Largeur dans la page ----------
+ * Les thèmes « blocs » limitent le contenu à la largeur du texte (.is-layout-constrained,
+ * --wp--style--global--content-size). Le store locator utilise la largeur « large » du thème
+ * (alignwide), ou toute la largeur avec [store_locator largeur="pleine"].
+ */
+
+.saito-sl.alignwide,
+.is-layout-constrained > .saito-sl.alignwide {
+	width: 100%;
+	max-width: var(--wp--style--global--wide-size, 1200px);
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+.saito-sl.alignfull,
+.is-layout-constrained > .saito-sl.alignfull {
+	width: auto;
+	max-width: none;
+	padding-left: var(--wp--style--root--padding-left, 24px);
+	padding-right: var(--wp--style--root--padding-right, 24px);
+}
+
+/* ---------- Thème sombre ---------- */
+
+.saito-sl--dark {
+	--saito-sl-bg: #000;
+	--saito-sl-sticky-bg: #000;
+	--saito-sl-text: #fff;
+	--saito-sl-muted: #ababab;
+	--saito-sl-surface: #0b0b0b;
+	--saito-sl-raised: #151515;
+	--saito-sl-hover: #1f1f1f;
+	--saito-sl-line: #262626;
+	--saito-sl-border: #3d3d3d;
+	--saito-sl-accent: #fff;
+	--saito-sl-accent-text: #000;
+	--saito-sl-focus: #fff;
+	--saito-sl-panel: rgba(8, 8, 8, 0.9);
+	--saito-sl-panel-solid: #080808;
+	--saito-sl-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+	--saito-sl-pin: #fff;
+	--saito-sl-pin-stroke: #000;
+	--saito-sl-cluster-ring: rgba(255, 255, 255, 0.22);
+
+	padding: 24px;
+	border-radius: 16px;
+	color-scheme: dark;
+}
+
+.saito-sl *,
+.saito-sl *::before,
+.saito-sl *::after {
+	box-sizing: border-box;
+}
+
+.saito-sl p,
+.saito-sl h2,
+.saito-sl h3,
+.saito-sl dl,
+.saito-sl dd,
+.saito-sl ul,
+.saito-sl ol {
+	margin: 0;
+}
+
+.saito-sl [hidden] {
+	display: none !important;
+}
+
+.saito-sl :focus-visible {
+	outline: 2px solid var(--saito-sl-focus);
+	outline-offset: 2px;
+}
+
+.saito-sl a {
+	color: inherit;
+}
+
+/* ---------- Boutons ---------- */
+
+.saito-sl .saito-sl__btn,
+.saito-sl__locate,
+.saito-sl__panel-open {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 9px 16px;
+	font: inherit;
+	font-size: 13px;
+	font-weight: 700;
+	line-height: 1.2;
+	letter-spacing: 0.04em;
+	color: var(--saito-sl-accent-text);
+	background: var(--saito-sl-accent);
+	border: 1px solid var(--saito-sl-accent);
+	border-radius: 50px;
+	text-decoration: none;
+	cursor: pointer;
+	user-select: none;
+	list-style: none;
+	transition: opacity 0.2s, transform 0.2s var(--saito-sl-ease), background-color 0.2s, color 0.2s;
+}
+
+.saito-sl .saito-sl__btn:hover,
+.saito-sl__locate:hover,
+.saito-sl__panel-open:hover {
+	opacity: 0.85;
+}
+
+.saito-sl .saito-sl__btn:active,
+.saito-sl__locate:active {
+	transform: scale(0.97);
+}
+
+.saito-sl .saito-sl__btn--ghost {
+	color: var(--saito-sl-text);
+	background: transparent;
+	border-color: var(--saito-sl-border);
+}
+
+.saito-sl .saito-sl__btn--ghost:hover {
+	opacity: 1;
+	border-color: var(--saito-sl-text);
+}
+
+/* ---------- Recherche ---------- */
+
+.saito-sl__search {
+	margin-bottom: 12px;
+}
+
+.saito-sl__label {
+	display: block;
+	margin-bottom: 8px;
+	font-size: 18px;
+	font-weight: 600;
+	letter-spacing: -0.01em;
+}
+
+.saito-sl__bar {
+	display: flex;
+	gap: 10px;
+	align-items: stretch;
+}
+
+.saito-sl__field {
+	position: relative;
+	flex: 1;
+	min-width: 0;
+}
+
+.saito-sl__input {
+	width: 100%;
+	margin: 0;
+	padding: 12px 16px;
+	font: inherit;
+	font-size: 16px;
+	color: var(--saito-sl-text);
+	background: var(--saito-sl-surface);
+	border: 1px solid var(--saito-sl-border);
+	border-radius: 10px;
+	transition: border-color 0.2s;
+}
+
+/* Croix d'effacement native (bleue dans Chrome) : remplacée par une croix noir/blanc. */
+.saito-sl__input::-webkit-search-cancel-button {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 14px;
+	height: 14px;
+	cursor: pointer;
+	background: var(--saito-sl-text);
+	-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M19 6.4 17.6 5 12 10.6 6.4 5 5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12z'/%3E%3C/svg%3E") center / contain no-repeat;
+	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M19 6.4 17.6 5 12 10.6 6.4 5 5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.saito-sl__input::placeholder {
+	color: var(--saito-sl-muted);
+	opacity: 1;
+}
+
+.saito-sl__input:hover,
+.saito-sl__input:focus {
+	border-color: var(--saito-sl-text);
+}
+
+.saito-sl__locate {
+	padding: 0 18px;
+	font-size: 14px;
+	letter-spacing: 0;
+	white-space: nowrap;
+}
+
+.saito-sl__locate:disabled {
+	opacity: 0.6;
+	cursor: progress;
+}
+
+.saito-sl__suggestions {
+	position: absolute;
+	z-index: 1000;
+	top: calc(100% + 4px);
+	left: 0;
+	right: 0;
+	max-height: 45vh;
+	margin: 0;
+	padding: 4px;
+	overflow-y: auto;
+	list-style: none;
+	background: var(--saito-sl-surface);
+	border: 1px solid var(--saito-sl-border);
+	border-radius: 10px;
+	box-shadow: var(--saito-sl-shadow);
+	animation: saito-sl-drop 0.18s var(--saito-sl-ease);
+}
+
+.saito-sl__suggestion {
+	display: flex;
+	justify-content: space-between;
+	gap: 12px;
+	margin: 0;
+	padding: 9px 14px;
+	font-size: 15px;
+	border-radius: 6px;
+	cursor: pointer;
+}
+
+.saito-sl__suggestion:hover,
+.saito-sl__suggestion.is-active {
+	background: var(--saito-sl-hover);
+}
+
+.saito-sl__suggestion--message,
+.saito-sl__suggestion--message:hover {
+	color: var(--saito-sl-muted);
+	background: transparent;
+	cursor: default;
+}
+
+.saito-sl__suggestion-meta {
+	color: var(--saito-sl-muted);
+	font-size: 13px;
+	white-space: nowrap;
+}
+
+.saito-sl__suggestion--store .saito-sl__suggestion-main {
+	font-weight: 600;
+}
+
+/* ---------- Filtres ---------- */
+
+.saito-sl__filters {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin: 0 0 12px;
+}
+
+.saito-sl__chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 7px 14px;
+	font: inherit;
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 1.2;
+	color: var(--saito-sl-text);
+	background: transparent;
+	border: 1px solid var(--saito-sl-border);
+	border-radius: 50px;
+	cursor: pointer;
+	white-space: nowrap;
+	transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.saito-sl__chip:hover {
+	border-color: var(--saito-sl-text);
+}
+
+.saito-sl__chip[aria-pressed="true"] {
+	color: var(--saito-sl-accent-text);
+	background: var(--saito-sl-accent);
+	border-color: var(--saito-sl-accent);
+}
+
+.saito-sl__chip--service::before {
+	content: "✦";
+	font-size: 10px;
+}
+
+.saito-sl__chip-count {
+	font-size: 11px;
+	font-weight: 400;
+	opacity: 0.7;
+}
+
+.saito-sl__status {
+	min-height: 1.4em;
+	margin: 0 0 12px;
+	font-size: 14px;
+	color: var(--saito-sl-muted);
+}
+
+/* Information déjà affichée par le titre de la liste : réservée aux lecteurs d'écran (ordinateur). */
+@media screen and (min-width: 900px) {
+	.saito-sl__status.is-info {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		min-height: 0;
+		margin: -1px;
+		padding: 0;
+		overflow: hidden;
+		clip: rect(0 0 0 0);
+		white-space: nowrap;
+		border: 0;
+	}
+}
+
+.saito-sl__status.is-error {
+	color: var(--saito-sl-text);
+}
+
+.saito-sl__status.is-error::before {
+	content: "⚠ ";
+}
+
+/* ---------- Carte plein cadre + liste superposée ---------- */
+
+.saito-sl__body {
+	position: relative;
+	height: 78vh;
+	min-height: 560px;
+	max-height: 900px;
+	overflow: hidden;
+	border: 1px solid var(--saito-sl-line);
+	border-radius: 14px;
+}
+
+.saito-sl__map {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	background: var(--saito-sl-raised);
+}
+
+.saito-sl__panel {
+	position: absolute;
+	z-index: 2;
+	top: 16px;
+	bottom: 16px;
+	left: 16px;
+	width: min(380px, 42%);
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	background: var(--saito-sl-panel-solid);
+	border: 1px solid var(--saito-sl-line);
+	border-radius: 12px;
+	box-shadow: var(--saito-sl-shadow);
+	transition: transform 0.35s var(--saito-sl-ease), opacity 0.25s, visibility 0s;
+}
+
+.saito-sl.is-panel-collapsed .saito-sl__panel {
+	transform: translateX(calc(-100% - 24px));
+	opacity: 0;
+	visibility: hidden;
+	transition: transform 0.35s var(--saito-sl-ease), opacity 0.25s, visibility 0s 0.35s;
+}
+
+.saito-sl__panel-head {
+	position: sticky;
+	top: 0;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	padding: 14px 16px 12px;
+	background: var(--saito-sl-panel-solid);
+	border-bottom: 1px solid var(--saito-sl-line);
+}
+
+.saito-sl__panel-title {
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 1.3;
+	letter-spacing: -0.01em;
+}
+
+.saito-sl__panel-toggle {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	padding: 4px 6px;
+	font: inherit;
+	font-size: 12px;
+	color: var(--saito-sl-muted);
+	background: none;
+	border: 0;
+	border-radius: 6px;
+	cursor: pointer;
+}
+
+.saito-sl__panel-toggle:hover {
+	color: var(--saito-sl-text);
+}
+
+.saito-sl__panel-open {
+	position: absolute;
+	z-index: 2;
+	top: 16px;
+	left: 16px;
+	box-shadow: var(--saito-sl-shadow);
+	animation: saito-sl-in 0.3s var(--saito-sl-ease);
+}
+
+.saito-sl__empty {
+	padding: 20px 16px;
+	font-size: 14px;
+	line-height: 1.5;
+	color: var(--saito-sl-muted);
+}
+
+.saito-sl__results {
+	padding: 0;
+	list-style: none;
+}
+
+/* ---------- « Voir plus » et « Rechercher dans cette zone » ---------- */
+
+.saito-sl .saito-sl__more-results {
+	display: flex;
+	width: calc(100% - 32px);
+	margin: 8px 16px 16px;
+}
+
+.saito-sl__area {
+	position: absolute;
+	z-index: 3;
+	top: 16px;
+	left: 50%;
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 10px 18px;
+	font: inherit;
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--saito-sl-text);
+	background: var(--saito-sl-surface);
+	border: 1px solid var(--saito-sl-border);
+	border-radius: 50px;
+	box-shadow: var(--saito-sl-shadow);
+	cursor: pointer;
+	white-space: nowrap;
+	transform: translateX(-50%);
+	animation: saito-sl-drop-center 0.25s var(--saito-sl-ease);
+	transition: border-color 0.2s;
+}
+
+.saito-sl__area:hover {
+	border-color: var(--saito-sl-text);
+}
+
+/* Centré sur la partie visible de la carte, à droite de la liste. */
+.saito-sl:not(.is-panel-collapsed) .saito-sl__area {
+	left: calc((100% + min(380px, 42%) + 16px) / 2);
+}
+
+@keyframes saito-sl-drop-center {
+	from {
+		opacity: 0;
+		transform: translate(-50%, -6px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateX(-50%);
+	}
+}
+
+/* ---------- Fiches (typographie hiérarchisée) ---------- */
+
+.saito-sl__card {
+	position: relative;
+	margin: 0;
+	padding: 16px 16px 16px 18px;
+	border-bottom: 1px solid var(--saito-sl-line);
+	cursor: pointer;
+	transition: background-color 0.2s;
+	animation: saito-sl-in 0.4s var(--saito-sl-ease) both;
+	animation-delay: calc(var(--i, 0) * 45ms);
+}
+
+.saito-sl__card:last-child {
+	border-bottom: 0;
+}
+
+.saito-sl__card::before {
+	content: "";
+	position: absolute;
+	top: 12px;
+	bottom: 12px;
+	left: 0;
+	width: 3px;
+	background: var(--saito-sl-text);
+	border-radius: 0 3px 3px 0;
+	transform: scaleY(0);
+	transition: transform 0.25s var(--saito-sl-ease);
+}
+
+.saito-sl__card:hover,
+.saito-sl__card.is-hot {
+	background: var(--saito-sl-hover);
+}
+
+.saito-sl__card.is-active::before {
+	transform: scaleY(1);
+}
+
+.saito-sl__card-top {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 8px;
+	margin-bottom: 2px;
+}
+
+.saito-sl__eyebrow {
+	font-size: 11px;
+	font-weight: 600;
+	line-height: 1.3;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--saito-sl-muted);
+}
+
+.saito-sl__distance {
+	font-size: 12px;
+	font-variant-numeric: tabular-nums;
+	color: var(--saito-sl-muted);
+	white-space: nowrap;
+}
+
+.saito-sl__card-heading {
+	margin: 0 0 4px;
+	font-size: inherit;
+}
+
+.saito-sl__card-title {
+	display: block;
+	width: 100%;
+	padding: 0;
+	font: inherit;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 1.25;
+	letter-spacing: -0.01em;
+	text-align: left;
+	color: var(--saito-sl-text);
+	background: none;
+	border: 0;
+	cursor: pointer;
+}
+
+.saito-sl__card-title:focus:not(:focus-visible) {
+	outline: none;
+}
+
+.saito-sl__address {
+	font-size: 13px;
+	line-height: 1.45;
+	color: var(--saito-sl-muted);
+}
+
+.saito-sl__open-state {
+	margin-top: 6px !important;
+	font-size: 13px;
+	font-weight: 600;
+}
+
+.saito-sl__open-state::before {
+	content: "●";
+	margin-right: 6px;
+	font-size: 9px;
+	vertical-align: 2px;
+}
+
+.saito-sl__open-state.is-closed {
+	font-weight: 400;
+	color: var(--saito-sl-muted);
+}
+
+.saito-sl__open-state.is-closed::before {
+	content: "○";
+}
+
+.saito-sl__contact {
+	margin-top: 4px !important;
+	font-size: 13px;
+}
+
+.saito-sl__contact a,
+.saito-sl a.saito-sl__more {
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 3px;
+}
+
+.saito-sl__card-actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	gap: 8px 16px;
+	margin-top: 12px;
+}
+
+.saito-sl a.saito-sl__more {
+	padding: 9px 0;
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+.saito-sl a.saito-sl__more:hover {
+	text-decoration-thickness: 2px;
+}
+
+/* ---------- Menu « J'Y VAIS » ---------- */
+
+.saito-sl__go {
+	margin: 0;
+}
+
+.saito-sl__go > summary::-webkit-details-marker {
+	display: none;
+}
+
+.saito-sl__go-menu {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin-top: 8px;
+	animation: saito-sl-drop 0.2s var(--saito-sl-ease);
+}
+
+.saito-sl .saito-sl__go-link {
+	display: inline-block;
+	padding: 6px 12px;
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 1.2;
+	color: var(--saito-sl-text);
+	background: var(--saito-sl-raised);
+	border: 1px solid var(--saito-sl-border);
+	border-radius: 50px;
+	text-decoration: none;
+	transition: border-color 0.2s;
+}
+
+.saito-sl .saito-sl__go-link:hover {
+	border-color: var(--saito-sl-text);
+}
+
+/* ---------- Marqueurs ---------- */
+
+.saito-sl-pin,
+.saito-sl-cluster,
+.saito-sl-user {
+	background: none;
+	border: 0;
+}
+
+.saito-sl-pin svg {
+	display: block;
+	overflow: visible;
+	transform-origin: 50% 100%;
+	transition: transform 0.22s var(--saito-sl-ease);
+	filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.35));
+}
+
+.saito-sl-pin__body {
+	fill: var(--saito-sl-pin);
+	stroke: var(--saito-sl-pin-stroke);
+	stroke-width: 2;
+}
+
+.saito-sl-pin__dot {
+	fill: var(--saito-sl-pin-stroke);
+}
+
+.saito-sl-pin.is-hot svg {
+	transform: scale(1.22) translateY(-2px);
+}
+
+.saito-sl-pin.is-active svg {
+	transform: scale(1.32);
+	animation: saito-sl-bounce 0.5s var(--saito-sl-ease);
+}
+
+.saito-sl-cluster span {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	font-family: inherit;
+	font-size: 13px;
+	font-weight: 700;
+	line-height: 1;
+	color: var(--saito-sl-pin-stroke);
+	background: var(--saito-sl-pin);
+	border: 2px solid var(--saito-sl-pin-stroke);
+	border-radius: 50%;
+	box-shadow: 0 0 0 5px var(--saito-sl-cluster-ring);
+	transition: transform 0.22s var(--saito-sl-ease);
+}
+
+.saito-sl-cluster.is-hot span {
+	transform: scale(1.15);
+}
+
+.saito-sl-user__dot,
+.saito-sl-user__pulse {
+	position: absolute;
+	inset: 0;
+	border-radius: 50%;
+}
+
+.saito-sl-user__dot {
+	inset: 4px;
+	background: var(--saito-sl-pin);
+	border: 3px solid var(--saito-sl-pin-stroke);
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.saito-sl-user__pulse {
+	background: var(--saito-sl-cluster-ring);
+	animation: saito-sl-pulse 2s ease-out infinite;
+}
+
+/* ---------- Contrôles Leaflet et popups ---------- */
+
+.saito-sl .leaflet-bar {
+	border: 1px solid var(--saito-sl-border);
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: var(--saito-sl-shadow);
+}
+
+.saito-sl .leaflet-bar a,
+.saito-sl .leaflet-bar a:hover {
+	color: var(--saito-sl-text);
+	background: var(--saito-sl-surface);
+	border-bottom-color: var(--saito-sl-line);
+}
+
+.saito-sl .leaflet-bar a:hover {
+	background: var(--saito-sl-hover);
+}
+
+.saito-sl .leaflet-container .leaflet-control-attribution {
+	color: var(--saito-sl-muted);
+	background: var(--saito-sl-panel);
+}
+
+.saito-sl .leaflet-container .leaflet-control-attribution a {
+	color: var(--saito-sl-text);
+}
+
+.saito-sl .leaflet-popup-content-wrapper,
+.saito-sl .leaflet-popup-tip {
+	color: var(--saito-sl-text);
+	background: var(--saito-sl-surface);
+	box-shadow: var(--saito-sl-shadow);
+}
+
+.saito-sl .leaflet-popup-content-wrapper {
+	border: 1px solid var(--saito-sl-line);
+	border-radius: 12px;
+}
+
+.saito-sl .leaflet-popup-content {
+	margin: 14px 16px;
+	font-family: inherit;
+	line-height: 1.4;
+}
+
+.saito-sl .leaflet-container a.leaflet-popup-close-button {
+	color: var(--saito-sl-muted);
+}
+
+.saito-sl-popup__title {
+	margin: 2px 0 4px !important;
+	font-size: 16px;
+	font-weight: 600;
+	letter-spacing: -0.01em;
+}
+
+.saito-sl-popup .saito-sl__card-actions {
+	margin-top: 10px;
+}
+
+.saito-sl__map-hint {
+	position: absolute;
+	inset: 0;
+	z-index: 1000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 24px;
+	font-size: 16px;
+	font-weight: 600;
+	text-align: center;
+	color: #fff;
+	background: rgba(0, 0, 0, 0.6);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.25s;
+}
+
+.saito-sl__map-hint.is-visible {
+	opacity: 1;
+}
+
+/* ---------- Fiche magasin (fenêtre de détail) ---------- */
+
+.saito-sl__modal {
+	width: min(560px, calc(100vw - 32px));
+	max-height: calc(100vh - 48px);
+	padding: 0;
+	overflow: auto;
+	color: var(--saito-sl-text);
+	background: var(--saito-sl-surface);
+	border: 1px solid var(--saito-sl-line);
+	border-radius: 16px;
+	box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
+}
+
+/* Fiche rendue par le serveur avant le chargement du script : centrée comme la version modale. */
+.saito-sl__modal[open] {
+	position: fixed;
+	inset: 0;
+	z-index: 100000;
+	margin: auto;
+}
+
+.saito-sl__modal::backdrop {
+	background: rgba(0, 0, 0, 0.62);
+	-webkit-backdrop-filter: blur(3px);
+	backdrop-filter: blur(3px);
+	animation: saito-sl-fade 0.25s ease;
+}
+
+.saito-sl__modal[open] .saito-sl__modal-inner {
+	animation: saito-sl-rise 0.3s var(--saito-sl-ease);
+}
+
+.saito-sl__modal-inner {
+	position: relative;
+	padding: 32px 28px 28px;
+}
+
+.saito-sl__modal-close {
+	position: absolute;
+	top: 14px;
+	right: 14px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	padding: 0;
+	color: var(--saito-sl-text);
+	background: transparent;
+	border: 1px solid var(--saito-sl-border);
+	border-radius: 50%;
+	cursor: pointer;
+	transition: border-color 0.2s, transform 0.2s var(--saito-sl-ease);
+}
+
+.saito-sl__modal-close:hover {
+	border-color: var(--saito-sl-text);
+	transform: rotate(90deg);
+}
+
+.saito-sl__modal-title {
+	margin: 4px 48px 6px 0 !important;
+	font-size: 26px;
+	font-weight: 600;
+	line-height: 1.15;
+	letter-spacing: -0.02em;
+}
+
+.saito-sl__facts {
+	display: grid;
+	gap: 18px;
+	margin-top: 22px !important;
+	padding-top: 20px;
+	border-top: 1px solid var(--saito-sl-line);
+}
+
+.saito-sl__fact dt {
+	margin-bottom: 4px;
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--saito-sl-muted);
+}
+
+.saito-sl__fact dd {
+	font-size: 15px;
+	line-height: 1.5;
+}
+
+.saito-sl__fact address {
+	font-style: normal;
+}
+
+.saito-sl__week {
+	width: 100%;
+	margin: 0;
+	border-collapse: collapse;
+	font-size: 14px;
+	font-variant-numeric: tabular-nums;
+}
+
+.saito-sl__week th,
+.saito-sl__week td {
+	padding: 4px 0;
+	text-align: left;
+	font-weight: 400;
+	border: 0;
+	background: none;
+}
+
+.saito-sl__week td {
+	text-align: right;
+	color: var(--saito-sl-muted);
+}
+
+.saito-sl__week tr.is-today th,
+.saito-sl__week tr.is-today td {
+	font-weight: 700;
+	color: var(--saito-sl-text);
+}
+
+.saito-sl__tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	padding: 0;
+	list-style: none;
+}
+
+.saito-sl__tags li {
+	margin: 0;
+	padding: 4px 10px;
+	font-size: 12px;
+	border: 1px solid var(--saito-sl-border);
+	border-radius: 50px;
+}
+
+.saito-sl__sheet-actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	gap: 10px;
+	margin-top: 24px;
+	padding-top: 20px;
+	border-top: 1px solid var(--saito-sl-line);
+}
+
+/* ---------- Bascule Carte / Liste (mobile uniquement) ---------- */
+
+.saito-sl__views {
+	display: none;
+}
+
+/* ---------- Animations ---------- */
+
+@keyframes saito-sl-in {
+	from {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@keyframes saito-sl-drop {
+	from {
+		opacity: 0;
+		transform: translateY(-4px);
+	}
+
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@keyframes saito-sl-rise {
+	from {
+		opacity: 0;
+		transform: translateY(16px) scale(0.98);
+	}
+
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@keyframes saito-sl-fade {
+	from {
+		opacity: 0;
+	}
+}
+
+@keyframes saito-sl-bounce {
+	0% {
+		transform: scale(1);
+	}
+
+	45% {
+		transform: scale(1.45) translateY(-6px);
+	}
+
+	100% {
+		transform: scale(1.32);
+	}
+}
+
+@keyframes saito-sl-pulse {
+	0% {
+		transform: scale(0.6);
+		opacity: 1;
+	}
+
+	100% {
+		transform: scale(2.4);
+		opacity: 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.saito-sl *,
+	.saito-sl *::before,
+	.saito-sl *::after,
+	.saito-sl__modal::backdrop {
+		animation: none !important;
+		transition: none !important;
+	}
+}
+
+/* ---------- Mobile ---------- */
+
+@media screen and (max-width: 899px) {
+	.saito-sl--dark {
+		padding: 16px;
+	}
+
+	.saito-sl__search {
+		position: sticky;
+		top: var(--saito-sl-sticky-top, 0);
+		z-index: 5;
+		margin: 0 -4px 10px;
+		padding: 8px 4px;
+		background: var(--saito-sl-sticky-bg);
+	}
+
+	.saito-sl__views {
+		display: flex;
+		margin-top: 10px;
+		padding: 3px;
+		background: var(--saito-sl-surface);
+		border: 1px solid var(--saito-sl-border);
+		border-radius: 50px;
+	}
+
+	.saito-sl__view {
+		flex: 1;
+		padding: 8px 12px;
+		font: inherit;
+		font-size: 14px;
+		font-weight: 700;
+		color: var(--saito-sl-text);
+		background: transparent;
+		border: 0;
+		border-radius: 50px;
+		cursor: pointer;
+		transition: background-color 0.2s, color 0.2s;
+	}
+
+	.saito-sl__view[aria-pressed="true"] {
+		color: var(--saito-sl-accent-text);
+		background: var(--saito-sl-accent);
+	}
+
+	.saito-sl__filters {
+		flex-wrap: nowrap;
+		overflow-x: auto;
+		padding-bottom: 4px;
+		scrollbar-width: none;
+	}
+
+	.saito-sl__filters::-webkit-scrollbar {
+		display: none;
+	}
+
+	.saito-sl__body {
+		height: auto;
+		min-height: 0;
+		max-height: none;
+		overflow: visible;
+		border: 0;
+		border-radius: 0;
+	}
+
+	.saito-sl__map {
+		position: relative;
+		height: 62vh;
+		min-height: 360px;
+		border: 1px solid var(--saito-sl-line);
+		border-radius: 12px;
+		overflow: hidden;
+	}
+
+	.saito-sl__panel,
+	.saito-sl.is-panel-collapsed .saito-sl__panel {
+		position: static;
+		width: 100%;
+		overflow: visible;
+		background: transparent;
+		-webkit-backdrop-filter: none;
+		backdrop-filter: none;
+		border: 0;
+		box-shadow: none;
+		transform: none;
+		opacity: 1;
+		visibility: visible;
+	}
+
+	.saito-sl__panel-head,
+	.saito-sl__panel-open {
+		display: none !important;
+	}
+
+	.saito-sl__card {
+		padding: 16px 4px 16px 14px;
+	}
+
+	.saito-sl:not(.is-panel-collapsed) .saito-sl__area {
+		left: 50%;
+	}
+
+	.saito-sl .saito-sl__more-results {
+		width: 100%;
+		margin: 12px 0 0;
+	}
+
+	.saito-sl[data-view="list"] .saito-sl__area,
+	.saito-sl[data-view="list"] .saito-sl__map,
+	.saito-sl[data-view="map"] .saito-sl__panel {
+		display: none;
+	}
+
+	.saito-sl__modal {
+		width: 100vw;
+		max-width: 100vw;
+		max-height: 92vh;
+		margin: auto auto 0;
+		border-radius: 18px 18px 0 0;
+	}
+
+	.saito-sl__modal-inner {
+		padding: 28px 20px 24px;
+	}
+}
+
+@media screen and (max-width: 520px) {
+	.saito-sl__bar {
+		flex-direction: column;
+	}
+
+	.saito-sl__locate {
+		padding: 11px 16px;
+	}
+}
+
+/* ---------- [store_locator_list] ---------- */
+
+.saito-sl-list ul {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+	gap: 16px;
+	margin: 0 0 1.5em;
+	padding: 0;
+	list-style: none;
+}
+
+.saito-sl-list li {
+	margin: 0;
+	line-height: 1.45;
+}
