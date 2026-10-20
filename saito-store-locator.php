@@ -25,6 +25,26 @@ define( 'SAITO_SL_OPTION', 'saito_sl_settings' );
 define( 'SAITO_SL_CAP', 'manage_options' );
 define( 'SAITO_SL_CRON_HOOK', 'saito_sl_daily_sync' );
 
+// Menu « Saito » commun aux plugins Saito (voir includes/saito-hub/hub.php) :
+// les pages du store locator y apparaissent en sous-menus.
+require_once SAITO_SL_DIR . 'includes/saito-hub/load.php';
+add_filter( 'saito_hub_plugins', 'saito_sl_register_in_saito_hub' );
+
+/**
+ * Déclaration auprès du menu Saito (tableau de bord, documentation).
+ *
+ * @param array $plugins Plugins Saito actifs.
+ * @return array
+ */
+function saito_sl_register_in_saito_hub( $plugins ) {
+	$plugins['store-locator'] = array(
+		'version'      => SAITO_SL_VERSION,
+		'settings_url' => admin_url( 'admin.php?page=saito-store-locator' ),
+		'menu_slugs'   => array( 'saito-store-locator', 'saito-store-locator-settings' ),
+	);
+	return $plugins;
+}
+
 require_once SAITO_SL_DIR . 'includes/settings.php';
 require_once SAITO_SL_DIR . 'includes/store.php';
 require_once SAITO_SL_DIR . 'includes/storage.php';

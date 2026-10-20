@@ -39,6 +39,8 @@
     <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
         <properties>
             <property name="prefixes" type="array">
+                <element value="saito_hub"/>
+                <element value="SAITO_HUB"/>
                 <element value="saito_sl"/>
                 <element value="SAITO_SL"/>
                 <element value="Saito_SL"/>

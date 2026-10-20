@@ -26,9 +26,9 @@ foreach ( array( 'upload', 'sync_now', 'apply', 'cancel', 'restore', 'export' ) 
  * Menus d'administration.
  */
 function saito_sl_admin_menu() {
-	add_menu_page( 'Saito Store Locator', __( 'Points de vente', 'saito-store-locator' ), SAITO_SL_CAP, SAITO_SL_PAGE, 'saito_sl_render_stores_page', 'dashicons-location', 58 );
-	add_submenu_page( SAITO_SL_PAGE, __( 'Magasins', 'saito-store-locator' ), __( 'Magasins', 'saito-store-locator' ), SAITO_SL_CAP, SAITO_SL_PAGE, 'saito_sl_render_stores_page' );
-	add_submenu_page( SAITO_SL_PAGE, __( 'Paramètres', 'saito-store-locator' ), __( 'Paramètres', 'saito-store-locator' ), SAITO_SL_CAP, SAITO_SL_SETTINGS_PAGE, 'saito_sl_render_settings_page' );
+	// Sous le menu « Saito » commun ; les slugs ne changent pas, les liens existants restent valables.
+	add_submenu_page( saito_hub_menu_slug(), __( 'Points de vente', 'saito-store-locator' ), __( 'Points de vente', 'saito-store-locator' ), SAITO_SL_CAP, SAITO_SL_PAGE, 'saito_sl_render_stores_page' );
+	add_submenu_page( saito_hub_menu_slug(), __( 'Paramètres des points de vente', 'saito-store-locator' ), __( 'Paramètres des points de vente', 'saito-store-locator' ), SAITO_SL_CAP, SAITO_SL_SETTINGS_PAGE, 'saito_sl_render_settings_page' );
 }
 
 /**

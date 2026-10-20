@@ -11,6 +11,9 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
+// Réglages partagés de Saito > Outils : supprimés seulement avec le dernier plugin Saito.
+require __DIR__ . '/includes/saito-hub/uninstall.php';
+
 wp_clear_scheduled_hook( 'saito_sl_daily_sync' );
 
 foreach ( array( 'saito_sl_settings', 'saito_sl_meta', 'saito_sl_sync_status', 'saito_sl_last_alert', 'saito_sl_page_id' ) as $saito_sl_option ) {
