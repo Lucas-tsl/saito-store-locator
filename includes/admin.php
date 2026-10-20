@@ -10,6 +10,8 @@
 defined( 'ABSPATH' ) || exit;
 
 define( 'SAITO_SL_PAGE', 'saito-store-locator' );
+// Ancienne page « Paramètres des points de vente » : désormais l'onglet
+// Paramètres de la page Points de vente (voir saito_sl_redirect_legacy_settings_page()).
 define( 'SAITO_SL_SETTINGS_PAGE', 'saito-store-locator-settings' );
 
 add_action( 'admin_menu', 'saito_sl_admin_menu' );
@@ -26,9 +28,81 @@ foreach ( array( 'upload', 'sync_now', 'apply', 'cancel', 'restore', 'export' ) 
  * Menus d'administration.
  */
 function saito_sl_admin_menu() {
-	// Sous le menu « Saito » commun ; les slugs ne changent pas, les liens existants restent valables.
-	add_submenu_page( saito_hub_menu_slug(), __( 'Points de vente', 'saito-store-locator' ), __( 'Points de vente', 'saito-store-locator' ), SAITO_SL_CAP, SAITO_SL_PAGE, 'saito_sl_render_stores_page' );
-	add_submenu_page( saito_hub_menu_slug(), __( 'Paramètres des points de vente', 'saito-store-locator' ), __( 'Paramètres des points de vente', 'saito-store-locator' ), SAITO_SL_CAP, SAITO_SL_SETTINGS_PAGE, 'saito_sl_render_settings_page' );
+	// Une seule entrée sous le menu « Saito » commun, avec deux onglets
+	// (Général, Paramètres) : voir saito_sl_render_admin_page().
+	add_submenu_page( saito_hub_menu_slug(), __( 'Points de vente', 'saito-store-locator' ), __( 'Points de vente', 'saito-store-locator' ), SAITO_SL_CAP, SAITO_SL_PAGE, 'saito_sl_render_admin_page' );
+
+	// Ancienne page de paramètres, gardée hors menu (parent « options.php »)
+	// uniquement pour rediriger : WordPress refuse l'accès à une page non
+	// déclarée avant même 'admin_init'.
+	$legacy = add_submenu_page( 'options.php', __( 'Points de vente', 'saito-store-locator' ), __( 'Points de vente', 'saito-store-locator' ), SAITO_SL_CAP, SAITO_SL_SETTINGS_PAGE, '__return_null' );
+	if ( $legacy ) {
+		add_action( 'load-' . $legacy, 'saito_sl_redirect_legacy_settings_page' );
+	}
+}
+
+/**
+ * Adresse d'un onglet de la page Points de vente.
+ *
+ * @param string $tab '' (Général) ou 'settings'.
+ * @return string
+ */
+function saito_sl_admin_url( $tab = '' ) {
+	$args = array( 'page' => SAITO_SL_PAGE );
+	if ( 'settings' === $tab ) {
+		$args['tab'] = 'settings';
+	}
+	return add_query_arg( $args, admin_url( 'admin.php' ) );
+}
+
+/**
+ * Onglet affiché.
+ *
+ * @return string '' (Général) ou 'settings'.
+ */
+function saito_sl_current_tab() {
+	$tab = isset( $_GET['tab'] ) ? sanitize_key( wp_unslash( $_GET['tab'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- simple choix d'onglet.
+	return 'settings' === $tab ? 'settings' : '';
+}
+
+/**
+ * L'ancienne page de paramètres renvoie vers l'onglet Paramètres (favoris,
+ * liens d'e-mails d'alerte déjà envoyés…).
+ */
+function saito_sl_redirect_legacy_settings_page() {
+	wp_safe_redirect( saito_sl_admin_url( 'settings' ) );
+	exit;
+}
+
+/**
+ * Page Points de vente : onglets Général (magasins, import, sauvegardes) et Paramètres.
+ */
+function saito_sl_render_admin_page() {
+	if ( ! current_user_can( SAITO_SL_CAP ) ) {
+		return;
+	}
+	$tab  = saito_sl_current_tab();
+	$tabs = array(
+		''         => __( 'Général', 'saito-store-locator' ),
+		'settings' => __( 'Paramètres', 'saito-store-locator' ),
+	);
+	?>
+	<div class="wrap saito-sl-admin">
+		<h1><?php esc_html_e( 'Points de vente', 'saito-store-locator' ); ?></h1>
+		<nav class="nav-tab-wrapper" aria-label="<?php esc_attr_e( 'Onglets des points de vente', 'saito-store-locator' ); ?>">
+			<?php foreach ( $tabs as $slug => $label ) : ?>
+				<a href="<?php echo esc_url( saito_sl_admin_url( $slug ) ); ?>" class="nav-tab<?php echo $slug === $tab ? ' nav-tab-active' : ''; ?>"<?php echo $slug === $tab ? ' aria-current="page"' : ''; ?>><?php echo esc_html( $label ); ?></a>
+			<?php endforeach; ?>
+		</nav>
+		<?php
+		if ( 'settings' === $tab ) {
+			saito_sl_render_settings_page();
+		} else {
+			saito_sl_render_stores_page();
+		}
+		?>
+	</div>
+	<?php
 }
 
 /**
@@ -100,7 +174,7 @@ function saito_sl_admin_notices() {
 	}
 
 	$settings = saito_sl_get_settings();
-	if ( '' === $settings['apikey'] && SAITO_SL_SETTINGS_PAGE === ( isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : '' ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- lecture de la page affichée.
+	if ( '' === $settings['apikey'] && SAITO_SL_PAGE === ( isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : '' ) && 'settings' === saito_sl_current_tab() ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- lecture de la page affichée.
 		printf(
 			'<div class="notice notice-info"><p>%s</p></div>',
 			esc_html__( 'La carte utilise les tuiles d\'OpenStreetMap, prévues pour un usage modéré. Pour un site très fréquenté, renseignez une clé MapTiler (offre gratuite disponible).', 'saito-store-locator' )
@@ -340,7 +414,7 @@ function saito_sl_help_tags() {
 }
 
 /**
- * Page « Magasins ».
+ * Onglet Général : magasins, import, synchronisation, sauvegardes.
  */
 function saito_sl_render_stores_page() {
 	if ( ! current_user_can( SAITO_SL_CAP ) ) {
@@ -356,8 +430,7 @@ function saito_sl_render_stores_page() {
 		'restore' => __( 'restauration d\'une sauvegarde', 'saito-store-locator' ),
 	);
 	?>
-	<div class="wrap saito-sl-admin">
-		<h1><?php esc_html_e( 'Points de vente — Magasins', 'saito-store-locator' ); ?></h1>
+	<div class="saito-sl-tab">
 
 		<div class="saito-sl-summary">
 			<p class="saito-sl-summary__count">
@@ -421,7 +494,7 @@ function saito_sl_render_stores_page() {
 							sprintf(
 								/* translators: %s: adresse de la page des paramètres. */
 								__( 'Renseignez l\'adresse de la feuille dans les <a href="%s">paramètres</a> pour mettre à jour les magasins en un clic, voire automatiquement chaque jour.', 'saito-store-locator' ),
-								esc_url( admin_url( 'admin.php?page=' . SAITO_SL_SETTINGS_PAGE ) )
+								esc_url( saito_sl_admin_url( 'settings' ) )
 							),
 							saito_sl_help_tags()
 						);
@@ -589,7 +662,7 @@ function saito_sl_render_backups() {
 }
 
 /**
- * Page « Paramètres » (API Settings : nonce et droits vérifiés par options.php).
+ * Onglet Paramètres (API Settings : nonce et droits vérifiés par options.php).
  */
 function saito_sl_render_settings_page() {
 	if ( ! current_user_can( SAITO_SL_CAP ) ) {
@@ -598,8 +671,7 @@ function saito_sl_render_settings_page() {
 	$s    = saito_sl_get_settings();
 	$name = SAITO_SL_OPTION;
 	?>
-	<div class="wrap saito-sl-admin">
-		<h1><?php esc_html_e( 'Points de vente — Paramètres', 'saito-store-locator' ); ?></h1>
+	<div class="saito-sl-tab">
 		<?php settings_errors(); ?>
 		<form method="post" action="options.php">
 			<?php settings_fields( 'saito_sl' ); ?>
