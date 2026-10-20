@@ -40,7 +40,7 @@ function saito_sl_register_in_saito_hub( $plugins ) {
 	$plugins['store-locator'] = array(
 		'version'      => SAITO_SL_VERSION,
 		'settings_url' => admin_url( 'admin.php?page=saito-store-locator' ),
-		'menu_slugs'   => array( 'saito-store-locator', 'saito-store-locator-settings' ),
+		'menu_slugs'   => array( 'saito-store-locator' ),
 	);
 	return $plugins;
 }

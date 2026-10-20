@@ -46,7 +46,7 @@ The admin interface and visitor texts are in French and ready for translation. T
 
 1. Upload the `saito-store-locator` folder to `/wp-content/plugins/`, or install the plugin from the **Plugins → Add New** screen.
 2. Activate the plugin.
-3. Go to **Saito → Points de vente** and import your stores (CSV file, or the address of a Google Sheets sheet in **Saito → Paramètres des points de vente**).
+3. Go to **Saito → Points de vente** and import your stores (CSV file, or the address of a Google Sheets sheet in the **Paramètres** tab of the same page).
 4. Add the `[saito_store_locator]` shortcode to a page.
 
 Recognized CSV columns: `name`, `latitude`, `longitude` (required), `id_store`, `active`, `address1`, `address2`, `postcode`, `city`, `country`, `phone`, `website`, `enseigne` (brand), `services`, `horaires` (opening hours), `icone` (`signature` for a highlighted marker). French column names (`nom`, `ville`, `code postal`…) are accepted too.
