@@ -202,6 +202,7 @@ const input = `${root} .saito-sl__input`;
 	await page.waitForFunction(() => document.querySelector('.saito-sl__modal').matches(':modal'));
 	const sheet = await page.locator('.saito-sl__modal').innerText();
 	check(/Le Bouscat/.test(sheet) && /Lundi/.test(sheet) && /01 99 00 20 40/.test(sheet), 'lien direct : fiche ouverte avec adresse, horaires et téléphone');
+	check(/[?&]magasin=maison-dupont-le-bouscat/.test(page.url()), 'lien direct : l\'URL du magasin est conservée tant que la fiche est ouverte');
 	check(/^(Ouvert|Fermé)/m.test(await page.locator('.saito-sl__modal .saito-sl__open-state').innerText()), 'état « Ouvert / Fermé » calculé dans le fuseau horaire du site');
 	await page.screenshot({ path: `${out}/4-fiche-magasin.png` });
 	check(await page.locator('.saito-sl__modal .saito-sl__show-map').count() === 0, 'pas de bouton « Voir sur la carte » redondant dans la fiche');

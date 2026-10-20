@@ -1442,6 +1442,11 @@
 		});
 		// Fermeture par le navigateur lui-même : l'URL et le titre suivent.
 		modal.addEventListener('close', function () {
+			// L'événement arrive après coup : une fiche fermée puis aussitôt rouverte
+			// (fiche rendue par le serveur, voir openStore()) est de nouveau ouverte ici.
+			if (self.modal.open) {
+				return;
+			}
 			if (self.root.classList.contains('has-modal')) {
 				self.afterClose(false);
 			}
@@ -1574,7 +1579,7 @@
 		document.title = sprintf(__('%1$s : adresse, horaires et téléphone – %2$s', 'saito-store-locator'), store.title, this.baseTitle);
 		var url = this.storeUrl(store);
 		if (options.push && window.location.href !== url) {
-			window.history.pushState({ saitoSl: store.slug }, '', url);
+			window.history.pushState(historyState({ saitoSl: store.slug }), '', url);
 			this.historyPushed = true;
 		}
 		// La carte se place sur le magasin derrière la fenêtre.
@@ -1584,6 +1589,29 @@
 			this.centerOn(marker.getLatLng(), Math.max(this.map.getZoom(), FOCUS_ZOOM));
 		}
 	};
+
+	/**
+	 * État d'historique à pousser : complète celui de la page au lieu de le remplacer.
+	 * L'Interactivity API de WordPress y range son identifiant de session et recharge
+	 * la page sur Précédent/Suivant quand il manque.
+	 */
+	function historyState(extra) {
+		var state = {};
+		var current = window.history.state;
+		if (current && typeof current === 'object') {
+			Object.keys(current).forEach(function (key) {
+				state[key] = current[key];
+			});
+		}
+		Object.keys(extra).forEach(function (key) {
+			if (null === extra[key]) {
+				delete state[key];
+			} else {
+				state[key] = extra[key];
+			}
+		});
+		return state;
+	}
 
 	StoreLocator.prototype.closeStore = function (fromHistory) {
 		if (!this.modal || !this.modal.open) {
@@ -1604,7 +1632,7 @@
 			} else {
 				var url = new URL(window.location.href);
 				url.searchParams.delete(this.queryVar);
-				window.history.replaceState({}, '', url.toString());
+				window.history.replaceState(historyState({ saitoSl: null }), '', url.toString());
 			}
 		}
 		if (this.lastFocus && typeof this.lastFocus.focus === 'function' && document.body.contains(this.lastFocus)) {
